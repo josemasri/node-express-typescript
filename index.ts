@@ -1,6 +1,7 @@
 import Server from './classes/server';
 import userRoutes from './routes/usuario';
 import mongoose from 'mongoose';
+import cors from 'cors';
 import bodyParser from 'body-parser';
 import postRoutes from './routes/post';
 import fileUpload from 'express-fileupload';
@@ -15,6 +16,11 @@ server.app.use(bodyParser.json());
 // File Upload
 server.app.use(fileUpload({ useTempFiles: true }));
 
+// CORS setup
+server.app.use(cors({
+    origin: true,
+    credentials: true
+}));
 // App routes
 server.app.use('/user', userRoutes);
 server.app.use('/posts', postRoutes);
@@ -22,7 +28,7 @@ server.app.use('/posts', postRoutes);
 
 // Conectar DB
 mongoose.connect(
-    'mongodb://localhost:27017/fotosgram',
+    `mongodb+srv://${process.env.user}:${process.env.password}@cluster0-tp4og.mongodb.net/test?retryWrites=true&w=majority`,
     {
         useNewUrlParser: true,
         useCreateIndex: true,

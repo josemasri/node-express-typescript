@@ -19,7 +19,7 @@ userRoutes.post('/login', (req: Request, res: Response) => {
             });
         }
         if(!userDB) {
-            return res.status(404).json({
+            return res.status(401).json({
                 ok: false,
                 mensaje: 'Usuario/contraseña no son correctas'
             });
@@ -32,7 +32,7 @@ userRoutes.post('/login', (req: Request, res: Response) => {
                 token
             });
         }
-        res.status(404).json({
+        res.status(401).json({
             ok: false,
             mensaje: 'Usuario/contraseña no son correctas'
         });
