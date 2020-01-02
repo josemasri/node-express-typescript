@@ -9,6 +9,7 @@ import fileUpload from 'express-fileupload';
 const server = new Server;
 if (process.env.USER) {
     process.env.DATABASE = `mongodb+srv://${process.env.USER}:${process.env.PASS}@cluster0-tp4og.mongodb.net/fotosgram?retryWrites=true&w=majority`;
+    console.log(process.env.DATABASE);
 }
 
 mongoose.Promise = global.Promise
