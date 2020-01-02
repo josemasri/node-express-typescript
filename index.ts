@@ -7,8 +7,10 @@ import postRoutes from './routes/post';
 import fileUpload from 'express-fileupload';
 
 const server = new Server;
-process.env.DATABASE = `mongodb+srv://<${process.env.USER}>:<${process.env.PASS}>@cluster0-tp4og.mongodb.net/fotosgram?retryWrites=true&w=majority`;
+process.env.DATABASE = `mongodb+srv://${process.env.USER}:${process.env.PASS}@cluster0-tp4og.mongodb.net/fotosgram?retryWrites=true&w=majority`;
 console.log(process.env.DATABASE);
+
+mongoose.Promise = global.Promise
 
 
 // Body parser
