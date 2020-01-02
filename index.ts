@@ -7,7 +7,15 @@ import postRoutes from './routes/post';
 import fileUpload from 'express-fileupload';
 
 const server = new Server;
-const URI = `mongodb+srv://admin:CDvKbtExCP4z5jAV@cluster0-tp4og.mongodb.net/fotosgram?retryWrites=true&w=majority`;
+const USER = process.env.USER;
+const PASS = process.env.PASS;
+let URI = `mongodb+srv://admin:CDvKbtExCP4z5jAV@cluster0-tp4og.mongodb.net/fotosgram?retryWrites=true&w=majority`;
+
+if (USER) {
+    URI = `mongodb+srv://${USER}:${PASS}@cluster0-tp4og.mongodb.net/fotosgram?retryWrites=true&w=majority`;
+}
+
+
 
 mongoose.Promise = global.Promise
 

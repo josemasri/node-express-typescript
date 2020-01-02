@@ -11,7 +11,12 @@ const body_parser_1 = __importDefault(require("body-parser"));
 const post_1 = __importDefault(require("./routes/post"));
 const express_fileupload_1 = __importDefault(require("express-fileupload"));
 const server = new server_1.default;
-const URI = `mongodb+srv://admin:CDvKbtExCP4z5jAV@cluster0-tp4og.mongodb.net/fotosgram?retryWrites=true&w=majority`;
+const USER = process.env.USER;
+const PASS = process.env.PASS;
+let URI = `mongodb+srv://admin:CDvKbtExCP4z5jAV@cluster0-tp4og.mongodb.net/fotosgram?retryWrites=true&w=majority`;
+if (USER) {
+    URI = `mongodb+srv://${USER}:${PASS}@cluster0-tp4og.mongodb.net/fotosgram?retryWrites=true&w=majority`;
+}
 mongoose_1.default.Promise = global.Promise;
 // Body parser
 server.app.use(body_parser_1.default.urlencoded({ extended: true }));
