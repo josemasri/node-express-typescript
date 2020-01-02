@@ -7,10 +7,7 @@ import postRoutes from './routes/post';
 import fileUpload from 'express-fileupload';
 
 const server = new Server;
-if (process.env.USER) {
-    process.env.DATABASE = `mongodb+srv://${process.env.USER}:${process.env.PASS}@cluster0-tp4og.mongodb.net/fotosgram?retryWrites=true&w=majority`;
-    console.log(process.env.DATABASE);
-}
+const URI = `mongodb+srv://admin:CDvKbtExCP4z5jAV@cluster0-tp4og.mongodb.net/fotosgram?retryWrites=true&w=majority`;
 
 mongoose.Promise = global.Promise
 
@@ -35,7 +32,7 @@ server.app.use('/posts', postRoutes);
 
 // Conectar DB
 mongoose.connect(
-    'mongodb://localhost:27017/fotosgram',
+    URI,
     {
         useNewUrlParser: true,
         useCreateIndex: true,
