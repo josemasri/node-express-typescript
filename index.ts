@@ -7,8 +7,9 @@ import postRoutes from './routes/post';
 import fileUpload from 'express-fileupload';
 
 const server = new Server;
-process.env.DATABASE = `mongodb+srv://${process.env.USER}:${process.env.PASS}@cluster0-tp4og.mongodb.net/fotosgram?retryWrites=true&w=majority`;
-console.log(process.env.DATABASE);
+if (process.env.USER) {
+    process.env.DATABASE = `mongodb+srv://${process.env.USER}:${process.env.PASS}@cluster0-tp4og.mongodb.net/fotosgram?retryWrites=true&w=majority`;
+}
 
 mongoose.Promise = global.Promise
 
@@ -33,7 +34,7 @@ server.app.use('/posts', postRoutes);
 
 // Conectar DB
 mongoose.connect(
-    process.env.DATABASE || 'mongodb://localhost:27017/fotosgram',
+    'mongodb://localhost:27017/fotosgram',
     {
         useNewUrlParser: true,
         useCreateIndex: true,
@@ -42,6 +43,7 @@ mongoose.connect(
     },
     (err) => {
         if (err) {
+            console.log('Error conectando la base de datos');
             throw err;
         }
         console.log("Base de datos online");
